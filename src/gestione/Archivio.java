@@ -25,10 +25,10 @@ public Archivio(String nomeArchivio, Responsabile responsabile) {
         
         if (nomeArchivio == null || nomeArchivio.trim().isEmpty()) {
             
-            throw new IllegalArgumentException("Il nome dell'archivio non può essere vuoto!");
+            throw new IllegalArgumentException("Errore: il nome dell'archivio non può essere vuoto!");
         }
         this.nomeArchivio = nomeArchivio.trim();
-        this.responsabile = Objects.requireNonNull(responsabile, "Il responsabile non può essere vuoto!");
+        this.responsabile = Objects.requireNonNull(responsabile, "Errore: Il nome del responsabile non può essere vuoto!");
         this.fotografie = new HashMap<>();
 }
 
@@ -48,20 +48,20 @@ public void aggiungiFoto(Fotografia foto) {
     
     if (foto == null){
         
-        throw new IllegalArgumentException("La fotografia non può essere vuota!");
+        throw new IllegalArgumentException("Errore: la fotografia non può essere vuota!");
     }
 
     String id = foto.getIdFoto();
     
     if (id == null || id.trim().isEmpty()) {
         
-            throw new IllegalArgumentException("La fotografia deve avere un ID valido!");
+            throw new IllegalArgumentException("Errore: La fotografia deve avere un ID valido!");
         }
     id = id.trim();
     
     if (fotografie.containsKey(id)) {
         
-        throw new IllegalArgumentException("La fotografia con ID ' " + foto.getIdFoto() + "' esiste gia!");
+        throw new IllegalArgumentException("Errore: La fotografia con ID ' " + foto.getIdFoto() + "' esiste gia!");
     }
     fotografie.put(id, foto);
 }
@@ -74,14 +74,14 @@ public void aggiungiFoto(Fotografia foto) {
     public Fotografia rimuoviFoto(String idFoto) {
         
         if (idFoto == null || idFoto.trim().isEmpty()) {
-            throw new IllegalArgumentException("L'ID della fotografia non può essere vuoto!");
+            throw new IllegalArgumentException("Errore: L'ID della fotografia non può essere vuoto!");
         }
 
         Fotografia rimossa = fotografie.remove(idFoto.trim());
 
         if (rimossa == null) {
             
-            throw new IllegalArgumentException("Nessuna fotografia trovata con ID '" + idFoto + "'!");
+            throw new IllegalArgumentException("Errore: Nessuna fotografia trovata con ID '" + idFoto + "'!");
         }
 
         return rimossa;
@@ -128,3 +128,4 @@ public void aggiungiFoto(Fotografia foto) {
 
 
 // this class represents an archive that contains photographs and is managed by a responsible person
+
